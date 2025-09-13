@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #b22222;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .cakes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+    .cake {
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      width: 200px;
+    }
+    .cake img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .order-form {
+      max-width: 400px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #0044cc;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #0077ff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005bbb;
+    }
+    .result {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>CAKE SHOP</header>
+
+  <div class="cakes">
+    <div class="cake">
+      <img src="https://share.google/images/zbpYd5kHfie65ZRAt" alt="Rainbow Cake">
+      <p>Rainbow Cake – Rs. 300</p>
+    </div>
+    <div class="cake">
+      <img src="https://share.google/images/9iIPufpYafw1OcjG8" alt="Chocolate Cake">
+      <p>Chocolate Cake – Rs. 200</p>
+    </div>
+    <div class="cake">
+      <img src="https://share.google/images/UL61NzKhcjB7KkZp0" alt="Red Velvet Cake">
+      <p>Red Velvet Cake – Rs. 250</p>
+    </div>
+    <div class="cake">
+      <img src="https://share.google/images/VyDLTI8RqVPYwgQZt" alt="Black Forest Cake">
+      <p>Black Forest Cake – Rs. 350</p>
+    </div>
+  </div>
+
+  <div class="order-form">
+    <h2>Order Cake</h2>
+    <label>Rainbow Cake (Quantity)</label>
+    <input type="number" id="rainbow" value="0" min="0">
+
+    <label>Chocolate Cake (Quantity)</label>
+    <input type="number" id="chocolate" value="0" min="0">
+
+    <label>Red Velvet Cake (Quantity)</label>
+    <input type="number" id="redvelvet" value="0" min="0">
+
+    <label>Black Forest Cake (Quantity)</label>
+    <input type="number" id="blackforest" value="0" min="0">
+
+    <button onclick="calculateBill()">Place Order</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateBill() {
+      let rainbow = document.getElementById("rainbow").value;
+      let chocolate = document.getElementById("chocolate").value;
+      let redvelvet = document.getElementById("redvelvet").value;
+      let blackforest = document.getElementById("blackforest").value;
+
+      let total =
+        (rainbow * 300) +
+        (chocolate * 200) +
+        (redvelvet * 250) +
+        (blackforest * 350);
+
+      document.getElementById("result").innerText =
+        total > 0 ? `Purchase Order Bill: Rs. ${total}` : "Please select at least 1 cake!";
+    }
+  </script>
+</body>
+</html>
