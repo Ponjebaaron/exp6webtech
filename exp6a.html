@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GST Calculator</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #e6f9ff;
+      padding: 20px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #0077cc;
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+    .btn {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #0077ff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #005bbb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>GST Calculator</h2>
+    
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount" min="0">
+    
+    <label for="gst">GST (%):</label>
+    <select id="gst">
+      <option value="3">3%</option>
+      <option value="5">5%</option>
+      <option value="12">12%</option>
+      <option value="18">18%</option>
+      <option value="28">28%</option>
+    </select>
+    
+    <div class="result" id="actual">Actual Amount: 0.00</div>
+    <div class="result" id="gstAmt">GST: 0.00</div>
+    <div class="result" id="total">Total: 0.00</div>
+    
+    <button class="btn" id="reset">Reset</button>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+      function calculateGST() {
+        let amount = parseFloat($("#amount").val()) || 0;
+        let gstPercent = parseFloat($("#gst").val());
+        
+        let gstAmount = (amount * gstPercent) / 100;
+        let total = amount + gstAmount;
+        
+        $("#actual").text("Actual Amount: " + amount.toFixed(2));
+        $("#gstAmt").text("GST: " + gstAmount.toFixed(2));
+        $("#total").text("Total: " + total.toFixed(2));
+      }
+      
+      $("#amount, #gst").on("input change", calculateGST);
+      
+      $("#reset").click(function() {
+        $("#amount").val("");
+        $("#gst").val("3");
+        $("#actual").text("Actual Amount: 0.00");
+        $("#gstAmt").text("GST: 0.00");
+        $("#total").text("Total: 0.00");
+      });
+    });
+  </script>
+</body>
+</html>
